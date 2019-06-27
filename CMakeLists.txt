@@ -1,7 +1,8 @@
-cmake_minimum_required(VERSION 2.6)
-project(Test)
-set(VTK_DIR "/home/guillaume/source/vtk/build")
+cmake_minimum_required (VERSION 3.9)
+project (edl VERSION 0.9999 LANGUAGES C CXX)
+
+
 find_package(VTK REQUIRED)
-#include(${VTK_USE_FILE})
+
 add_executable(edl edl.cxx)
 target_link_libraries(edl ${VTK_LIBRARIES})
