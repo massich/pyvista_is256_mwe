@@ -1,27 +1,14 @@
 import vtk
 
-# PyVista version
-# import pyvista as pv
-# sphere = vtk.vtkSphereSource()
-# sphere.Update()
-# mesh = sphere.GetOutput()
-# p = pv.Plotter(shape=(1, 2))
-# p.subplot(0, 0)
-# p.add_mesh(mesh, color=True)
-# p.subplot(0, 1)
-# p.add_mesh(mesh, color=True)
-# p.enable_eye_dome_lighting((0, 1))
-# p.show()
-
 # VTK version
 renderer1 = vtk.vtkRenderer()
-renderer1.SetViewport(0, 0, 200, 200)
 renderer2 = vtk.vtkRenderer()
-renderer2.SetViewport(200, 0, 400, 400)
 renderWindow = vtk.vtkRenderWindow()
-renderWindow.SetSize(400, 400)
+renderWindow.SetSize(500, 500)
 renderWindow.AddRenderer(renderer1)
+renderer1.SetViewport(0, 0, 0.5, 1.0)
 renderWindow.AddRenderer(renderer2)
+renderer2.SetViewport(0.5, 0, 1.0, 1.0)
 iren = vtk.vtkRenderWindowInteractor()
 iren.SetRenderWindow(renderWindow)
 
@@ -45,8 +32,7 @@ basicPasses = vtk.vtkRenderStepsPass()
 
 edl = vtk.vtkEDLShading()
 edl.SetDelegatePass(basicPasses)
-
-# renderer1.SetPass(edl)
+renderer2.SetPass(edl)
 
 renderWindow.Render()
 iren.Start()
