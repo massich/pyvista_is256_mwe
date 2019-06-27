@@ -14,9 +14,14 @@ import vtk
 # p.show()
 
 # VTK version
-renderer = vtk.vtkRenderer()
+renderer1 = vtk.vtkRenderer()
+renderer1.SetViewport(0, 0, 200, 200)
+renderer2 = vtk.vtkRenderer()
+renderer2.SetViewport(200, 0, 400, 400)
 renderWindow = vtk.vtkRenderWindow()
-renderWindow.AddRenderer(renderer)
+renderWindow.SetSize(400, 400)
+renderWindow.AddRenderer(renderer1)
+renderWindow.AddRenderer(renderer2)
 iren = vtk.vtkRenderWindowInteractor()
 iren.SetRenderWindow(renderWindow)
 
@@ -30,14 +35,18 @@ mapper.SetInputData(sphere.GetOutput())
 actor = vtk.vtkActor()
 actor.SetMapper(mapper)
 
-renderer.AddActor(actor)
+renderer1.AddActor(actor)
+renderer2.AddActor(actor)
+
+renderer1.ResetCamera()
+renderer2.ResetCamera()
 
 basicPasses = vtk.vtkRenderStepsPass()
 
 edl = vtk.vtkEDLShading()
 edl.SetDelegatePass(basicPasses)
 
-renderer.SetPass(edl)
+# renderer1.SetPass(edl)
 
 renderWindow.Render()
 iren.Start()
