@@ -9,7 +9,6 @@ iren.SetRenderWindow(renderWindow)
 
 sphere = vtk.vtkSphereSource()
 sphere.Update()
-mesh = sphere.GetOutput()
 
 mapper = vtk.vtkPolyDataMapper()
 mapper.SetInputData(sphere.GetOutput())
@@ -19,18 +18,18 @@ actor.SetMapper(mapper)
 
 
 def get_cam():
-    lights = vtk.vtkLightsPass()
-    default = vtk.vtkDefaultPass()
+    lights_pass = vtk.vtkLightsPass()
+    default_pass = vtk.vtkDefaultPass()
 
     passes = vtk.vtkRenderPassCollection()
-    passes.AddItem(lights)
-    passes.AddItem(default)
+    passes.AddItem(lights_pass)
+    passes.AddItem(default_pass)
 
-    seq = vtk.vtkSequencePass()
-    seq.SetPasses(passes)
+    seq_pass = vtk.vtkSequencePass()
+    seq_pass.SetPasses(passes)
 
     cameraP = vtk.vtkCameraPass()
-    cameraP.SetDelegatePass(seq)
+    cameraP.SetDelegatePass(seq_pass)
     return cameraP
 
 
