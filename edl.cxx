@@ -1,32 +1,14 @@
-/*=========================================================================
-
-  Program:   Visualization Toolkit
-
-  Copyright (c) Ken Martin, Will Schroeder, Bill Lorensen
-  All rights reserved.
-  See Copyright.txt or http://www.kitware.com/Copyright.htm for details.
-
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notice for more information.
-
-=========================================================================*/
-// test baking shadow maps
-//
-// The command line arguments are:
-// -I        => run in interactive mode; unless this is used, the program will
-//              not allow interaction and exit
-
+/*
+C++ version based on:
+https://vtk.org/gitweb?p=VTK.git;a=blob;f=Rendering/OpenGL2/Testing/Cxx/TestEDLPass.cxx
+*/
 #include "vtkActor.h"
 #include "vtkCamera.h"
 #include "vtkCellArray.h"
 #include "vtkEDLShading.h"
-#include "vtkNew.h"
 #include "vtkOpenGLRenderer.h"
 #include "vtkSphereSource.h"
 #include "vtkPolyDataMapper.h"
-#include "vtkProperty.h"
-#include "vtkRegressionTestImage.h"
 #include "vtkRenderStepsPass.h"
 #include "vtkRenderPassCollection.h"
 #include "vtkCameraPass.h"
@@ -36,8 +18,6 @@
 #include "vtkRenderWindow.h"
 #include "vtkRenderWindowInteractor.h"
 #include "vtkRenderer.h"
-#include "vtkTestUtilities.h"
-#include "vtkTimerLog.h"
 
 auto get_cam() -> vtkSmartPointer<vtkCameraPass> {
 	auto lights_pass = vtkSmartPointer<vtkLightsPass>::New();

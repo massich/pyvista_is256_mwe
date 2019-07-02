@@ -1,6 +1,6 @@
+# VTK version
 import vtk
 
-# VTK version
 renderWindow = vtk.vtkRenderWindow()
 renderWindow.SetSize(500, 500)
 
